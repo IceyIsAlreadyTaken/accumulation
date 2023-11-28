@@ -67,7 +67,7 @@ export function bufferToWav(audioBuffer) {
  */
 export function sliceAudio(audioBuffer, start, end) {
   const audioCtx = new AudioContext();
-  const duration = end - start;
+  const duration = Number((end - start).toFixed(2)); // end-start时长过短时截取会出问题，因此精度只保留两位
   const newBuffer = audioCtx.createBuffer(
     audioBuffer.numberOfChannels,
     duration * audioBuffer.sampleRate,
